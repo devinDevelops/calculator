@@ -13,6 +13,14 @@
   background-color: #fff;
   margin-bottom: 10px;
   border-radius: 8px;
+  position: relative;
+}
+
+.answer-text {
+  font-size: 28px;
+  position: absolute;
+  right: 14px;
+  top: -12px;
 }
 
 .middle-section {
@@ -93,6 +101,7 @@ body {
   align-items: center;
   flex-direction: column;
   background-color: #343a40;
+  font-family: arial;
 }
 
 button {
