@@ -64,11 +64,11 @@
   background-color: #6a994e;
 }
 
-.clear-button {
+.delete-button {
   background-color: #e5383b;
 }
 
-.clear-all-button {
+.reset-button {
   background-color: #660708;
 }
 
@@ -79,7 +79,8 @@
   background-color: #EDEDED;
 }
 
-.operator-button:hover {
+.operator-button:hover,
+.active-operator-button {
   background-color: #495057;
 }
 
@@ -87,11 +88,11 @@
   background-color: #5A8243;
 }
 
-.clear-button:hover {
+.delete-button:hover {
   background-color: #D91C1F;
 }
 
-.clear-all-button:hover {
+.reset-button:hover {
   background-color: #48090A;
 }
 
