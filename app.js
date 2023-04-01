@@ -4,6 +4,7 @@ const operatorBTNS = document.querySelectorAll('.operator-button');
 const equalBTN = document.getElementById('equal-button');
 const resetBTN = document.getElementById('reset-button');
 const decimalBTN = document.getElementById('decimal-button');
+const deleteBTN = document.getElementById('delete-button');
 
 let num1 = '';
 let num2 = '';
@@ -48,7 +49,6 @@ function operate() {
       break;
     }
   
-    console.log(`${num1} ${operator} ${num2} = ${answer}`)
     updateDisplay();
     num1 = '';
     num2 = '';
@@ -56,6 +56,48 @@ function operate() {
     answer = null;
     removeActiveOperatorStyle();
   }
+}
+
+function updateDisplay() {
+  operator == null
+    ? answerDisplayEl.textContent = num1
+    : answerDisplayEl.textContent = num2;
+
+  if (answer != null) answerDisplayEl.textContent = answer;
+}
+
+function addDecimal() {
+  if (operator == null && num1.includes('.') || operator != null && num2.includes('.')) {
+    answerDisplayEl.textContent = 'ERROR';
+  } else {
+    operator == null 
+    ? num1 += '.'
+    : num2 += '.';
+
+    updateDisplay();
+  }
+}
+
+function deleteCurrentInput() {
+  operator == null
+  ? num1 = ''
+  : num2 = '';
+
+  updateDisplay();
+}
+
+function resetCalc() {
+  operatorBTNS.forEach(operatorBTN => operatorBTN.setAttribute('disabled', 'true'));
+  answerDisplayEl.textContent = '';
+  removeActiveOperatorStyle();
+  num1 = '';
+  num2 = '';
+  operator = null;
+  answer = null;
+}
+
+function removeActiveOperatorStyle() {
+  operatorBTNS.forEach(operatorBTN => operatorBTN.classList.remove('active-operator-button'));
 }
 
 numBTNS.forEach(numBTN => {
@@ -85,41 +127,8 @@ operatorBTNS.forEach(operatorBTN => {
 
 decimalBTN.addEventListener('click', addDecimal)
 
+deleteBTN.addEventListener('click', deleteCurrentInput)
+
 equalBTN.addEventListener('click', operate);
 
 resetBTN.addEventListener('click', resetCalc);
-
-function updateDisplay() {
-  operator == null
-    ? answerDisplayEl.textContent = num1
-    : answerDisplayEl.textContent = num2;
-
-  if (answer != null) answerDisplayEl.textContent = answer;
-}
-
-function addDecimal() {
-  if (operator == null && num1.includes('.') || operator != null && num2.includes('.')) {
-    answerDisplayEl.textContent = 'ERROR';
-  } else {
-    operator == null 
-    ? num1 += '.'
-    : num2 += '.';
-
-    updateDisplay();
-  }
-
-}
-
-function resetCalc() {
-  operatorBTNS.forEach(operatorBTN => operatorBTN.setAttribute('disabled', 'true'));
-  answerDisplayEl.textContent = '';
-  removeActiveOperatorStyle();
-  num1 = '';
-  num2 = '';
-  operator = null;
-  answer = null;
-}
-
-function removeActiveOperatorStyle() {
-  operatorBTNS.forEach(operatorBTN => operatorBTN.classList.remove('active-operator-button'));
-}
