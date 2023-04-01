@@ -3,6 +3,7 @@ const numBTNS = document.querySelectorAll('.num-button');
 const operatorBTNS = document.querySelectorAll('.operator-button');
 const equalBTN = document.getElementById('equal-button');
 const resetBTN = document.getElementById('reset-button');
+const decimalBTN = document.getElementById('decimal-button');
 
 let num1 = '';
 let num2 = '';
@@ -82,6 +83,8 @@ operatorBTNS.forEach(operatorBTN => {
   });
 });
 
+decimalBTN.addEventListener('click', addDecimal)
+
 equalBTN.addEventListener('click', operate);
 
 resetBTN.addEventListener('click', resetCalc);
@@ -92,6 +95,19 @@ function updateDisplay() {
     : answerDisplayEl.textContent = num2;
 
   if (answer != null) answerDisplayEl.textContent = answer;
+}
+
+function addDecimal() {
+  if (operator == null && num1.includes('.') || operator != null && num2.includes('.')) {
+    answerDisplayEl.textContent = 'ERROR';
+  } else {
+    operator == null 
+    ? num1 += '.'
+    : num2 += '.';
+
+    updateDisplay();
+  }
+
 }
 
 function resetCalc() {
